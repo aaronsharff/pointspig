@@ -28,15 +28,17 @@ export function Hero() {
         </h1>
         <p className="mt-8 text-xl sm:text-2xl text-plum font-extrabold uppercase tracking-wide">
           Unlimited points. <span className="text-pig-600">Unlimited</span> rewards.
-          <br className="hidden sm:block" /> No caps. No categories. No nonsense.
+          <br className="hidden sm:block" /> Pay us <span className="text-pig-600">any</span> amount and <br/><span className="font-script text-pig-700 text-3xl">GET THOSE POINTS*</span>
+          
         </p>
+        <p className="mt-2 text-base text-plum/70 italic">*Points provided by your credit card company by paying us real money</p>
         <ul className="mt-6 flex flex-wrap justify-center gap-3 text-sm font-black uppercase">
           {[
             "Instant points",
-            "100% guaranteed",
             "Earn while you sleep",
             "Points on top of points",
-            "Trusted by millions",
+            "Trusted by some",
+            "Guaranteed?",
           ].map((t) => (
             <li
               key={t}
@@ -63,18 +65,13 @@ export function Hero() {
           {/* inner pig card sits inside the padding */}
           <div className="relative aspect-square rounded-3xl bg-pig-100 ring-4 ring-plum shadow-[10px_10px_0_var(--plum)] overflow-hidden">
             <Image
-              src="/pig.png"
+              src="/points_pig.png"
               alt="A pig eating money"
               fill
               priority
               sizes="(max-width: 768px) 90vw, 32rem"
               className="object-cover"
             />
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <span className="text-pig-700/60 font-mono text-sm tracking-widest">
-                [ PIG ART PLACEHOLDER ]
-              </span>
-            </div>
           </div>
 
           {/* corner stickers — anchored to outer container corners,
@@ -82,7 +79,7 @@ export function Hero() {
               visually without ever exceeding the outer's layout box */}
           <div className="absolute top-3 left-3 wobble z-10">
             <div className="bg-pig-600 text-white font-display text-xs px-3 py-2 rounded-md border-2 border-plum shadow-[3px_3px_0_var(--plum)] uppercase">
-              As Seen On TV!
+              Not Seen On TV!
             </div>
           </div>
           <div
@@ -90,7 +87,7 @@ export function Hero() {
             style={{ animationDelay: "0.4s" }}
           >
             <div className="bg-acid text-plum font-display text-base px-4 py-2 rounded-full border-2 border-plum shadow-[3px_3px_0_var(--plum)] uppercase">
-              FREE Points!!
+              FREE Points!!**
             </div>
           </div>
           <div
@@ -98,11 +95,14 @@ export function Hero() {
             style={{ animationDelay: "0.8s" }}
           >
             <div className="bg-gold-400 text-plum font-display text-xs px-3 py-2 rounded-md border-2 border-plum shadow-[3px_3px_0_var(--plum)] uppercase rotate-12">
-              Limited Time!
+              WOW!
             </div>
           </div>
         </div>
       </div>
+      <p className="mt-3 text-center text-base text-plum/70 italic px-6">
+        **Points are not free. Points are provided by your credit card company by paying us real money.
+      </p>
     </section>
   );
 }

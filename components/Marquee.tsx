@@ -14,7 +14,7 @@ const ITEMS = [
 export function Marquee() {
   const doubled = [...ITEMS, ...ITEMS];
   return (
-    <div className="bg-plum text-gold-400 border-y-2 border-gold-500 overflow-hidden">
+    <div className="bg-plum text-gold-400 overflow-hidden">
       <div className="marquee-track py-2 text-sm font-bold uppercase tracking-wider">
         {doubled.map((t, i) => (
           <span key={i} className="flex items-center px-6 whitespace-nowrap">

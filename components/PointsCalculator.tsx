@@ -134,11 +134,15 @@ export function PointsCalculator() {
               textShadow: "2px 2px 0 var(--plum)",
             }}
           >
-            ★ Generate {formatPoints(points)} Points NOW ★
+            ★ Get {formatPoints(points)} Points NOW*** ★
           </button>
 
+          <p className="mt-2 text-center text-xs text-plum/70 italic">
+            ***Points provided by your credit card company, by paying us {formatUSD(dollars)}.
+          </p>
+
           <p className="mt-3 text-center font-script text-pig-700 text-xl -rotate-1">
-            Don&apos;t wait! Points expire... probably never, but still!
+            Don&apos;t wait! Piggy is hungry!
           </p>
 
           {error && (
