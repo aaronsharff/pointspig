@@ -22,28 +22,27 @@ export function DisclaimerModal({ dollars, loading, onCancel, onConfirm }: Props
     >
       <div className="w-full max-w-lg bg-white rounded-2xl shadow-2xl ring-1 ring-pig-200 p-8">
         <h2 id="disclaimer-title" className="text-2xl font-bold text-plum">
-          Confirm your transaction
+          What are you doing?
         </h2>
         <p className="mt-2 text-plum/70">
-          Before we proceed, please review and acknowledge the following:
         </p>
         <ul className="mt-5 space-y-3 text-sm text-plum/80 list-disc pl-5">
           <li>
             You are about to be charged{" "}
             <span className="font-semibold text-plum">{formatUSD(dollars)}</span>{" "}
-            to your credit card.
+            to your credit card
           </li>
           <li>
-            The only thing you will receive in exchange is the standard credit card
-            points, miles, or cash-back rewards your card issuer awards for this
-            transaction under the terms of your cardholder agreement.
+            In real money
           </li>
           <li>
-            No goods, services, merchandise, or other consideration of any kind will
-            be delivered to you as a result of this charge.
+            All you will get in return is points. Not from us. From your credit card company.
           </li>
           <li>
-            This charge is final and non-refundable.
+            You will get nothing else. We will keep your money.
+          </li>
+          <li>
+            Are you sure you want to do this?
           </li>
         </ul>
 
@@ -55,7 +54,7 @@ export function DisclaimerModal({ dollars, loading, onCancel, onConfirm }: Props
             className="mt-1 h-4 w-4 accent-pig-600"
           />
           <span>
-            I have read and understand the above, and I wish to proceed with the transaction.
+            Yes, yes, yes!
           </span>
         </label>
 
@@ -66,7 +65,7 @@ export function DisclaimerModal({ dollars, loading, onCancel, onConfirm }: Props
             disabled={loading}
             className="px-5 py-2.5 rounded-lg text-plum/70 hover:text-plum font-medium disabled:opacity-50"
           >
-            Cancel
+            Go back
           </button>
           <button
             type="button"
@@ -74,7 +73,7 @@ export function DisclaimerModal({ dollars, loading, onCancel, onConfirm }: Props
             disabled={!acknowledged || loading}
             className="px-5 py-2.5 rounded-lg bg-pig-600 hover:bg-pig-700 text-white font-semibold disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
           >
-            {loading ? "Preparing…" : "Confirm and continue"}
+            {loading ? "Preparing…" : "Feed the pig!"}
           </button>
         </div>
       </div>
