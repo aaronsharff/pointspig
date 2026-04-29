@@ -49,19 +49,25 @@ export function Hero() {
       </div>
 
       <div className="mt-12 flex justify-center">
-        <div className="relative w-full max-w-md aspect-square">
-          {/* spinning starburst behind the pig */}
-          <div className="absolute inset-[-12%] spin-slow opacity-90">
+        {/*
+          Outer container is the full layout box. Padding is the decorative halo
+          region: the starburst fills it via inset-0, and the corner stickers
+          sit inside it near the corners. Nothing escapes this container.
+        */}
+        <div className="relative w-full max-w-lg p-8 sm:p-10">
+          {/* spinning starburst fills the outer's halo */}
+          <div className="absolute inset-0 spin-slow opacity-90 pointer-events-none">
             <div className="starburst w-full h-full" />
           </div>
 
-          <div className="relative w-full h-full rounded-3xl bg-pig-100 ring-4 ring-plum shadow-[10px_10px_0_var(--plum)] overflow-hidden">
+          {/* inner pig card sits inside the padding */}
+          <div className="relative aspect-square rounded-3xl bg-pig-100 ring-4 ring-plum shadow-[10px_10px_0_var(--plum)] overflow-hidden">
             <Image
               src="/pig.png"
               alt="A pig eating money"
               fill
               priority
-              sizes="(max-width: 768px) 90vw, 28rem"
+              sizes="(max-width: 768px) 90vw, 32rem"
               className="object-cover"
             />
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -71,18 +77,26 @@ export function Hero() {
             </div>
           </div>
 
-          {/* corner badges */}
-          <div className="absolute -top-4 -left-6 wobble">
+          {/* corner stickers — anchored to outer container corners,
+              positioned inside its padding so they straddle the pig card edge
+              visually without ever exceeding the outer's layout box */}
+          <div className="absolute top-3 left-3 wobble z-10">
             <div className="bg-pig-600 text-white font-display text-xs px-3 py-2 rounded-md border-2 border-plum shadow-[3px_3px_0_var(--plum)] uppercase">
               As Seen On TV!
             </div>
           </div>
-          <div className="absolute -bottom-4 -right-4 wobble" style={{ animationDelay: "0.4s" }}>
+          <div
+            className="absolute bottom-3 right-3 wobble z-10"
+            style={{ animationDelay: "0.4s" }}
+          >
             <div className="bg-acid text-plum font-display text-base px-4 py-2 rounded-full border-2 border-plum shadow-[3px_3px_0_var(--plum)] uppercase">
               FREE Points!!
             </div>
           </div>
-          <div className="absolute top-1/2 -right-10 -translate-y-1/2 wobble" style={{ animationDelay: "0.8s" }}>
+          <div
+            className="absolute top-1/2 right-2 -translate-y-1/2 wobble z-10"
+            style={{ animationDelay: "0.8s" }}
+          >
             <div className="bg-gold-400 text-plum font-display text-xs px-3 py-2 rounded-md border-2 border-plum shadow-[3px_3px_0_var(--plum)] uppercase rotate-12">
               Limited Time!
             </div>
