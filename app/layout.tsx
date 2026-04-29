@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Bungee, Caveat } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -7,15 +7,22 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const bungee = Bungee({
+  variable: "--font-display",
   subsets: ["latin"],
+  weight: "400",
+});
+
+const caveat = Caveat({
+  variable: "--font-script",
+  subsets: ["latin"],
+  weight: "700",
 });
 
 export const metadata: Metadata = {
-  title: "PointsPig — Generate unlimited credit card points",
+  title: "PointsPig — UNLIMITED Credit Card Points!",
   description:
-    "PointsPig is the rewards-optimization platform that turns every dollar you spend into the points your card issuer awards. No categories. No caps.",
+    "PointsPig: the world's #1 rewards multiplier engine. Unlimited points. No caps. No categories. Get those points, piggy!",
 };
 
 export default function RootLayout({
@@ -26,7 +33,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${bungee.variable} ${caveat.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

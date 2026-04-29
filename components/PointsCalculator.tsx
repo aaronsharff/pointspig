@@ -49,70 +49,102 @@ export function PointsCalculator() {
   }
 
   return (
-    <section className="px-6 mt-6">
-      <div className="max-w-2xl mx-auto bg-white rounded-3xl ring-1 ring-pig-200 shadow-2xl shadow-pig-200/40 p-8 sm:p-10">
-        <div className="text-center">
-          <p className="text-sm uppercase tracking-widest text-pig-600 font-semibold">
-            Your earnings
-          </p>
-          <p className="mt-2 text-6xl sm:text-7xl font-extrabold text-plum tabular-nums">
-            {formatPoints(points)}
-          </p>
-          <p className="text-plum/60 mt-1 text-lg">points</p>
+    <section className="px-6 mt-14 mb-4">
+      <div className="relative max-w-2xl mx-auto">
+        {/* Floating bonus sticker */}
+        <div className="absolute -top-8 -right-6 z-10 wobble">
+          <div className="bg-acid text-plum font-display text-sm px-4 py-2 rounded-full border-2 border-plum shadow-[3px_3px_0_var(--plum)] uppercase">
+            +Bonus Points!!
+          </div>
         </div>
 
-        <div className="mt-10">
-          <div className="flex items-center justify-between text-sm text-plum/70 mb-2">
-            <label htmlFor="amount" className="font-medium">
-              Transaction amount
+        <div className="bg-white rounded-3xl border-4 border-plum shadow-[10px_10px_0_var(--pig-700)] p-7 sm:p-10">
+          <div className="text-center">
+            <div className="inline-block bg-gold-400 text-plum font-display text-xs px-3 py-1 rounded border-2 border-plum uppercase tracking-widest">
+              ★ Points Generator™ ★
+            </div>
+            <p className="mt-4 font-script text-pig-600 text-2xl -rotate-1">
+              You are about to earn...
+            </p>
+            <p
+              className="mt-2 font-display text-pig-600 text-7xl sm:text-8xl tabular-nums leading-none"
+              style={{
+                textShadow:
+                  "3px 3px 0 #fff, 5px 5px 0 var(--gold-400), 7px 7px 0 var(--plum)",
+                WebkitTextStroke: "1px var(--plum)",
+              }}
+            >
+              {formatPoints(points)}
+            </p>
+            <p className="mt-2 font-display text-plum uppercase tracking-widest">
+              POINTS!!!
+            </p>
+          </div>
+
+          <div className="mt-10 bg-pig-50 border-2 border-plum rounded-xl p-5">
+            <div className="flex items-center justify-between text-sm text-plum mb-2">
+              <label htmlFor="amount" className="font-display uppercase">
+                Transaction Amount
+              </label>
+              <span className="font-display text-pig-700 text-xl">
+                {formatUSD(dollars)}
+              </span>
+            </div>
+            <input
+              id="amount"
+              type="range"
+              min={1}
+              max={10000}
+              step={1}
+              value={dollars}
+              onChange={(e) => setDollars(parseInt(e.target.value, 10))}
+              className="w-full accent-pig-600 h-3"
+            />
+            <div className="flex justify-between text-xs text-plum/50 mt-1 font-mono">
+              <span>$1</span>
+              <span>$10,000</span>
+            </div>
+          </div>
+
+          <div className="mt-5 bg-pig-50 border-2 border-plum rounded-xl p-5 flex items-center justify-between gap-4">
+            <label htmlFor="multiplier" className="font-display text-sm uppercase text-plum">
+              Your Card&apos;s Rewards Rate
             </label>
-            <span className="font-mono font-semibold text-plum">{formatUSD(dollars)}</span>
+            <select
+              id="multiplier"
+              value={multiplier}
+              onChange={(e) => setMultiplier(parseFloat(e.target.value))}
+              className="rounded-lg border-2 border-plum bg-white px-3 py-2 text-base font-display text-plum focus:outline-none focus:ring-2 focus:ring-pig-500"
+            >
+              {MULTIPLIERS.map((m) => (
+                <option key={m} value={m}>
+                  {m}x
+                </option>
+              ))}
+            </select>
           </div>
-          <input
-            id="amount"
-            type="range"
-            min={1}
-            max={10000}
-            step={1}
-            value={dollars}
-            onChange={(e) => setDollars(parseInt(e.target.value, 10))}
-            className="w-full accent-pig-600"
-          />
-          <div className="flex justify-between text-xs text-plum/40 mt-1 font-mono">
-            <span>$1</span>
-            <span>$10,000</span>
-          </div>
-        </div>
 
-        <div className="mt-6 flex items-center justify-between gap-4">
-          <label htmlFor="multiplier" className="text-sm font-medium text-plum/70">
-            Your card&apos;s rewards rate
-          </label>
-          <select
-            id="multiplier"
-            value={multiplier}
-            onChange={(e) => setMultiplier(parseFloat(e.target.value))}
-            className="rounded-lg border border-pig-200 bg-pig-50 px-3 py-2 text-sm font-semibold text-plum focus:outline-none focus:ring-2 focus:ring-pig-500"
+          <button
+            type="button"
+            onClick={() => setStage("disclaimer")}
+            className="shine mt-10 w-full rounded-xl text-white font-display uppercase text-2xl py-5 border-4 border-plum shadow-[6px_6px_0_var(--plum)] active:translate-x-1 active:translate-y-1 active:shadow-[2px_2px_0_var(--plum)] transition-transform"
+            style={{
+              background:
+                "linear-gradient(180deg, var(--pig-400) 0%, var(--pig-600) 50%, var(--pig-700) 100%)",
+              textShadow: "2px 2px 0 var(--plum)",
+            }}
           >
-            {MULTIPLIERS.map((m) => (
-              <option key={m} value={m}>
-                {m}x
-              </option>
-            ))}
-          </select>
+            ★ Generate {formatPoints(points)} Points NOW ★
+          </button>
+
+          <p className="mt-3 text-center font-script text-pig-700 text-xl -rotate-1">
+            Don&apos;t wait! Points expire... probably never, but still!
+          </p>
+
+          {error && (
+            <p className="mt-4 text-sm text-pig-700 text-center font-bold">{error}</p>
+          )}
         </div>
-
-        <button
-          type="button"
-          onClick={() => setStage("disclaimer")}
-          className="mt-10 w-full rounded-xl bg-pig-600 hover:bg-pig-700 text-white font-bold text-lg py-4 transition-colors shadow-lg shadow-pig-300/50"
-        >
-          Generate {formatPoints(points)} points
-        </button>
-
-        {error && (
-          <p className="mt-4 text-sm text-pig-700 text-center">{error}</p>
-        )}
       </div>
 
       {stage === "disclaimer" && (

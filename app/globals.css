@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fff5f8;
+  --background: #ffe1ec;
   --foreground: #2a0d1c;
 
   --pig-50:  #fff1f6;
@@ -17,6 +17,13 @@
 
   --plum: #3d0a2a;
   --cream: #fff8ef;
+
+  --gold-300: #ffe27a;
+  --gold-400: #ffd84d;
+  --gold-500: #ffb800;
+  --gold-600: #d99500;
+
+  --acid: #c4ff3d;
 }
 
 @theme inline {
@@ -37,12 +44,117 @@
   --color-plum: var(--plum);
   --color-cream: var(--cream);
 
+  --color-gold-300: var(--gold-300);
+  --color-gold-400: var(--gold-400);
+  --color-gold-500: var(--gold-500);
+  --color-gold-600: var(--gold-600);
+
+  --color-acid: var(--acid);
+
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-display);
+  --font-script: var(--font-script);
 }
 
 body {
-  background: linear-gradient(180deg, var(--pig-50) 0%, #ffffff 60%, var(--pig-50) 100%);
+  background:
+    radial-gradient(circle at 10% 0%, var(--pig-300) 0%, transparent 35%),
+    radial-gradient(circle at 90% 10%, var(--gold-300) 0%, transparent 30%),
+    radial-gradient(circle at 50% 100%, var(--pig-400) 0%, transparent 45%),
+    repeating-linear-gradient(
+      45deg,
+      var(--pig-100) 0,
+      var(--pig-100) 22px,
+      var(--pig-200) 22px,
+      var(--pig-200) 24px
+    );
+  background-attachment: fixed;
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
 }
+
+/* Glossy gradient button shine */
+.shine {
+  position: relative;
+  overflow: hidden;
+}
+.shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.55) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(0, 0, 0, 0.08) 100%
+  );
+  pointer-events: none;
+}
+
+/* Marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 40s linear infinite;
+}
+
+/* Wobble — for the bonus sticker */
+@keyframes wobble {
+  0%, 100% { transform: rotate(-8deg) scale(1); }
+  50%      { transform: rotate(-4deg) scale(1.06); }
+}
+.wobble { animation: wobble 1.6s ease-in-out infinite; }
+
+/* Sparkle pulse */
+@keyframes sparkle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.4; transform: scale(0.85); }
+}
+.sparkle { animation: sparkle 1.4s ease-in-out infinite; }
+
+/* Starburst — CSS-only 12-pointed badge */
+.starburst {
+  background:
+    conic-gradient(
+      from 0deg,
+      var(--gold-500) 0deg 15deg,
+      var(--gold-400) 15deg 30deg,
+      var(--gold-500) 30deg 45deg,
+      var(--gold-400) 45deg 60deg,
+      var(--gold-500) 60deg 75deg,
+      var(--gold-400) 75deg 90deg,
+      var(--gold-500) 90deg 105deg,
+      var(--gold-400) 105deg 120deg,
+      var(--gold-500) 120deg 135deg,
+      var(--gold-400) 135deg 150deg,
+      var(--gold-500) 150deg 165deg,
+      var(--gold-400) 165deg 180deg,
+      var(--gold-500) 180deg 195deg,
+      var(--gold-400) 195deg 210deg,
+      var(--gold-500) 210deg 225deg,
+      var(--gold-400) 225deg 240deg,
+      var(--gold-500) 240deg 255deg,
+      var(--gold-400) 255deg 270deg,
+      var(--gold-500) 270deg 285deg,
+      var(--gold-400) 285deg 300deg,
+      var(--gold-500) 300deg 315deg,
+      var(--gold-400) 315deg 330deg,
+      var(--gold-500) 330deg 345deg,
+      var(--gold-400) 345deg 360deg
+    );
+  clip-path: polygon(
+    50% 0%, 58% 18%, 76% 8%, 72% 28%, 92% 24%, 82% 42%,
+    100% 50%, 82% 58%, 92% 76%, 72% 72%, 76% 92%, 58% 82%,
+    50% 100%, 42% 82%, 24% 92%, 28% 72%, 8% 76%, 18% 58%,
+    0% 50%, 18% 42%, 8% 24%, 28% 28%, 24% 8%, 42% 18%
+  );
+}
+
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+.spin-slow { animation: spin-slow 14s linear infinite; }
